@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KI-Start · Dein Gehirn, das mitlernt</title>
+<meta name="description" content="Gratis-Startpaket von biteme.digital: drei KI-Kollegen in einem Ordner. Für Codex, Claude und Gemini.">
+<style>
+:root{--bg:#4A2478;--fg:#fff;--cy:#A0EFFF;--or:#FFA230;--ink:#1E1530;--card:#5B3290;--soft:#E8DDF6}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+main{max-width:640px;margin:0 auto;padding:28px max(18px,env(safe-area-inset-left)) 48px max(18px,env(safe-area-inset-right))}
+.kick{font:600 12px/1.3 ui-monospace,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--cy)}
+h1{font-size:clamp(30px,8vw,44px);line-height:1.05;margin:10px 0 12px}
+h2{font-size:21px;margin:0 0 8px}
+p{margin:0 0 12px}
+.card{background:var(--card);border-radius:14px;padding:18px;margin:18px 0}
+.btn{display:block;width:100%;text-align:center;font-weight:700;font-size:18px;padding:16px;border-radius:12px;border:0;cursor:pointer;text-decoration:none;margin:10px 0 0}
+.b1{background:var(--or);color:var(--ink)}
+.b2{background:var(--fg);color:var(--ink)}
+.b3{background:transparent;color:var(--fg);border:2px solid var(--cy)}
+.url{font:600 16px ui-monospace,Menlo,monospace;background:var(--ink);color:var(--cy);padding:10px 12px;border-radius:8px;word-break:break-all;user-select:all}
+ol{margin:0;padding-left:22px}li{margin:0 0 8px}
+code{font:15px ui-monospace,Menlo,monospace;background:var(--ink);color:var(--cy);padding:2px 6px;border-radius:6px}
+.small{font-size:14px;color:var(--soft)}
+#mob[hidden],#desk[hidden]{display:none}
+.ok{color:var(--cy);font-size:14px;min-height:20px;margin-top:6px}
+a{color:var(--cy)}
+</style>
+</head>
+<body>
+<main>
+  <div class="kick">Talents for IT-Future · biteme.digital</div>
+  <h1>Dein Gehirn, das mitlernt.</h1>
+  <p>Drei KI-Kollegen in einem Ordner: ein <b>Onboarder</b>, der dein System einrichtet, ein <b>Sparringspartner</b>, der dir ehrlich widerspricht, und ein <b>Agentenbauer</b>, mit dem du dir weitere Kollegen baust. Gratis. Teil es gern.</p>
+
+  <section class="card" id="mob">
+    <h2>Du bist am Handy?</h2>
+    <p>Das Paket läuft am Laptop oder PC. Schick dir den Link jetzt selbst, dann hast du ihn heute Abend.</p>
+    <button class="btn b1" id="share">Link an mich schicken</button>
+    <a class="btn b2" id="mail" href="#">Per Mail an mich</a>
+    <button class="btn b3" id="copy">Link kopieren</button>
+    <div class="ok" id="msg" aria-live="polite"></div>
+    <p class="small" style="margin-top:12px">Oder am Laptop einfach eintippen:</p>
+    <div class="url">bitemedigital.github.io/ki-start</div>
+  </section>
+
+  <section class="card" id="desk">
+    <h2>Am Laptop: los geht's</h2>
+    <a class="btn b1" href="KI-Start-Talents.zip" download>Startpaket herunterladen (ZIP, 72 KB)</a>
+    <ol style="margin-top:16px">
+      <li>ZIP entpacken. Du bekommst den Ordner <code>KI-Start-Talents</code>.</li>
+      <li>Öffne Codex (ChatGPT-App), Claude oder Antigravity (Gemini) und wähl diesen Ordner aus.</li>
+      <li>Tipp einen Satz: <code>Lies 00_HIER-STARTEN.md und folge der Anleitung.</code></li>
+    </ol>
+    <p class="small" style="margin-top:12px">Ab da führt dich der Onboarder. Rechne mit 30 Minuten für den ersten Teil.</p>
+  </section>
+
+  <section class="card">
+    <h2>Ohne Abo oder unter 18?</h2>
+    <p>Geht auch. Gemini läuft über die Antigravity-App gratis mit einem Google-Konto. Und im Paket liegt eine Gratis-Fassung zum Kopieren in den normalen Chat.</p>
+    <p class="small">Ehrlich: Claude ist laut Nutzungsbedingungen ab 18. ChatGPT unter 18 nur mit Zustimmung der Eltern. Die Gratis-Kontingente sind begrenzt.</p>
+  </section>
+
+  <p class="small">Keynote „Nicht besser tippen. Besser denken.“ von Jürgen Bogner, 04.11.2026. Fragen und Feedback gern an <span style="user-select:all">juergen@biteme.digital</span>. Quellcode und Inhalt: <a href="https://github.com/bitemedigital/ki-start">github.com/bitemedigital/ki-start</a></p>
+</main>
+<script>
+(function(){
+  var url="https://bitemedigital.github.io/ki-start/";
+  var mobile=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+  var mob=document.getElementById("mob"), desk=document.getElementById("desk"), msg=document.getElementById("msg");
+  if(!mobile){ desk.parentNode.insertBefore(desk, mob); }
+  document.getElementById("mail").href="mailto:?subject="+encodeURIComponent("KI-Start fürs Laptop")+"&body="+encodeURIComponent("Heute am Laptop öffnen: "+url);
+  var share=document.getElementById("share");
+  if(!navigator.share){ share.hidden=true; }
+  share.addEventListener("click",function(){ navigator.share({title:"KI-Start",text:"Am Laptop öffnen:",url:url}).catch(function(){}); });
+  document.getElementById("copy").addEventListener("click",function(){
+    if(navigator.clipboard){ navigator.clipboard.writeText(url).then(function(){msg.textContent="Kopiert. Schick ihn dir in WhatsApp oder in die Notizen.";},function(){msg.textContent="Bitte den Link unten markieren.";}); }
+    else { msg.textContent="Bitte den Link unten markieren."; }
+  });
+})();
+</script>
+</body>
+</html>
